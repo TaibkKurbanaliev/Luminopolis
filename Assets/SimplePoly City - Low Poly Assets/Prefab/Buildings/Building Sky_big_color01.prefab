@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 400000}
   - component: {fileID: 3300000}
   - component: {fileID: 2300000}
+  - component: {fileID: -3343885426052099995}
   m_Layer: 0
   m_Name: Building Sky_big_color01
   m_TagString: Untagged
@@ -86,3 +87,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &-3343885426052099995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9d33076ebf087945abdca80c768a138, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <BuildingData>k__BackingField:
+    <Name>k__BackingField: werew
+    <Description>k__BackingField: erew
+    <ID>k__BackingField: 1
+    <Cost>k__BackingField: 2343
+    <Size>k__BackingField: {x: 2, y: 2}
+    <Image>k__BackingField: {fileID: 21300000, guid: 3034aa47f4bad4547b474dbdc51d195d, type: 3}

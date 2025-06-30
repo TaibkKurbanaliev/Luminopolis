@@ -4,14 +4,9 @@ using UnityEngine;
 public class ShopView : MonoBehaviour
 {
     [SerializeField] private Transform _itemsParent;
+    [SerializeField] private ShopFactory _shopFactory;
 
     private List<ShopItemView> _shopItems = new();
-    private ShopFactory _shopFactory;
-
-    public void Awake()
-    {
-        _shopFactory = new ShopFactory();
-    }
 
     public void Show(IEnumerable<Building> items)
     {
