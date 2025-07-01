@@ -23,7 +23,7 @@ public class ShopView : MonoBehaviour
     {
         foreach (var item in _shopItems)
         {
-            Destroy(item);
+            Destroy(item.gameObject);
         }
 
         _shopItems.Clear();

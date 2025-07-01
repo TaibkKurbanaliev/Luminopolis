@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using Zenject;
 
@@ -17,14 +18,11 @@ public class InputManager : MonoBehaviour
     private void Constract(InputSystem_Actions input)
     {
         _input = input;
-        _input.UI.Click.started += OnClick;
+        _input.Player.Attack.started += OnClick;
         _input.UI.Cancel.started += OnExit;
     }
 
-    public bool IsPointerOverUI()
-    {
-        return false;
-    }
+    public bool IsPointerOverUI() => EventSystem.current.IsPointerOverGameObject();
 
     public Vector3 GetSelectedMapPosition()
     {
@@ -43,6 +41,7 @@ public class InputManager : MonoBehaviour
     private void OnClick(InputAction.CallbackContext context)
     {
         Clicked?.Invoke();
+        Debug.Log("Kek");
     }
 
     private void OnExit(InputAction.CallbackContext context)

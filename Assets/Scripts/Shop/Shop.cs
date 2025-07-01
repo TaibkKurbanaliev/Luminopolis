@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,18 +9,28 @@ public class Shop : MonoBehaviour
 
     private void OnEnable()
     {
+        ShopItemView.Buyed += OnItemBuyed;
+
         foreach (var button in _categoryButtons)
         {
             button.Clicked += OnCategoryClicked;
         }
     }
 
+
     private void OnDisable()
     {
+        ShopItemView.Buyed -= OnItemBuyed;
+
         foreach (var button in _categoryButtons)
         {
             button.Clicked -= OnCategoryClicked;
         }
+    }
+
+    private void OnItemBuyed(Building building)
+    {
+        gameObject.SetActive(false);
     }
 
     private void OnCategoryClicked(ShopCategoryButton button)
