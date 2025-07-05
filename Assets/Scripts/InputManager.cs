@@ -41,7 +41,6 @@ public class InputManager : MonoBehaviour
     private void OnClick(InputAction.CallbackContext context)
     {
         Clicked?.Invoke();
-        Debug.Log("Kek");
     }
 
     private void OnExit(InputAction.CallbackContext context)
