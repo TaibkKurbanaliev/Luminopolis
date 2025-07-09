@@ -3,22 +3,21 @@ using UnityEngine;
 public class PlacementSystem : MonoBehaviour
 {
     [SerializeField] private GameObject _mouseIndicator;
-    [SerializeField] private GameObject _cellIndicator;
     [SerializeField] private InputManager _inputManager;
     [SerializeField] private Grid _grid;
     [SerializeField] private float distanceBetweenGrid;
 
     [SerializeField] private GameObject _gridVisualization;
+    [SerializeField] private PreviewSystem _previewSystem = new();
 
     private Building _selectedObject;
     private GridData _gridData;
-    private Renderer _previewRenderer;
 
     public void Initialize()
     {
+        _previewSystem.Initialize();
         StopPlacement();
         _gridData = new GridData();
-        _previewRenderer = _cellIndicator.GetComponent<Renderer>();
     }
 
     private void OnEnable()
@@ -37,7 +36,7 @@ public class PlacementSystem : MonoBehaviour
         StopPlacement();
         _selectedObject = building;
         _gridVisualization.SetActive(true);
-        _cellIndicator.SetActive(true);
+        _previewSystem.StartShowingPlacementPreview(building.gameObject, building.BuildingData.Size);
         _inputManager.Clicked += PlaceStructure;
         _inputManager.Exit += StopPlacement;
     }
@@ -46,7 +45,7 @@ public class PlacementSystem : MonoBehaviour
     {
         _selectedObject = null;
         _gridVisualization.SetActive(false);
-        _cellIndicator.SetActive(false);
+        _previewSystem.StopShowingPreview();
         _inputManager.Clicked -= PlaceStructure;
         _inputManager.Exit -= StopPlacement;
     }
@@ -87,10 +86,8 @@ public class PlacementSystem : MonoBehaviour
         Vector3Int gridPosition = _grid.WorldToCell(new Vector3(mousePosition.x + _grid.cellSize.x / 2, mousePosition.y, mousePosition.z + _grid.cellSize.z / 2));
 
         bool placementValidity = _gridData.CanPlaceObject(gridPosition, _selectedObject.BuildingData.Size);
-        _previewRenderer.material.color = placementValidity ? Color.white : Color.red;
-
-        _cellIndicator.transform.position = _grid.CellToWorld(gridPosition);
-        _cellIndicator.transform.position = new Vector3(_cellIndicator.transform.position.x, _cellIndicator.transform.position.y + distanceBetweenGrid, _cellIndicator.transform.position.z);
+        
+        _previewSystem.UpdatePosition(_grid.CellToWorld(gridPosition), placementValidity);
     }
 
     private void OnBuildingBuyed(Building building)
