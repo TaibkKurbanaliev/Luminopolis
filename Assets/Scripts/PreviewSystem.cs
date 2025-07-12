@@ -4,7 +4,8 @@ using UnityEngine;
 [Serializable]
 public class PreviewSystem
 {
-    [SerializeField] private float previewYOffset = 0.06f;
+    [SerializeField] private float _previewYOffset = 0.06f;
+    [SerializeField] private float _indicatorYOffset = 0.015f;
     [SerializeField] private GameObject _cellIndicator;
     [SerializeField] private Material _previewMaterialsPrefab;
 
@@ -42,6 +43,13 @@ public class PreviewSystem
         AppllyFeedBack(validity);
     }
 
+    public void UpdateRotation()
+    {
+        var rotationAngle = 90.0f;
+
+        _previewObject.transform.Rotate(0f, rotationAngle, 0f);
+    }
+
     private void AppllyFeedBack(bool validity)
     {
         Color c = validity ? Color.white : Color.red;
@@ -52,12 +60,12 @@ public class PreviewSystem
 
     private void MoveCursor(Vector3 position)
     {
-        _cellIndicator.transform.position = position;
+        _cellIndicator.transform.position = new Vector3(position.x, position.y + _indicatorYOffset, position.z);
     }
 
     private void MovePreview(Vector3 position)
     {
-        _previewObject.transform.position = new Vector3(position.x, position.y + previewYOffset, position.z);
+        _previewObject.transform.position = new Vector3(position.x, position.y + _previewYOffset, position.z);
     }
 
     private void PreparePreview(GameObject previewObject)
@@ -81,7 +89,7 @@ public class PreviewSystem
     {
         if (size.x > 0 || size.y > 0)
         {
-            _cellIndicator.transform.localScale = new Vector3(size.x, 1, size.y);
+            _cellIndicator.transform.localScale = new Vector3(size.x, size.y, 1);
             _cellIndicatorRenderer.material.mainTextureScale = size;
         }
     }

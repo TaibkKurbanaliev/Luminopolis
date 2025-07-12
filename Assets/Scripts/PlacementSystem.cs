@@ -39,6 +39,7 @@ public class PlacementSystem : MonoBehaviour
         _previewSystem.StartShowingPlacementPreview(building.gameObject, building.BuildingData.Size);
         _inputManager.Clicked += PlaceStructure;
         _inputManager.Exit += StopPlacement;
+        _inputManager.Rotate += RotateStructure;
     }
 
     public void StopPlacement()
@@ -48,6 +49,7 @@ public class PlacementSystem : MonoBehaviour
         _previewSystem.StopShowingPreview();
         _inputManager.Clicked -= PlaceStructure;
         _inputManager.Exit -= StopPlacement;
+        _inputManager.Rotate -= RotateStructure;
     }
 
     private void PlaceStructure()
@@ -93,5 +95,12 @@ public class PlacementSystem : MonoBehaviour
     private void OnBuildingBuyed(Building building)
     {
         StartPlacement(building);
+    }
+
+    private void RotateStructure()
+    {
+        var rotationAngle = 90f;
+        _previewSystem.UpdateRotation();
+        _selectedObject.transform.Rotate(0f, rotationAngle, 0f);
     }
 }

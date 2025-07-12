@@ -13,6 +13,7 @@ public class InputManager : MonoBehaviour
     private Vector3 _lastPosition;
     public event Action Clicked;
     public event Action Exit;
+    public event Action Rotate;
 
     [Inject]
     private void Constract(InputSystem_Actions input)
@@ -20,6 +21,7 @@ public class InputManager : MonoBehaviour
         _input = input;
         _input.Player.Attack.started += OnClick;
         _input.UI.Cancel.started += OnExit;
+        _input.Player.Rotate.started += OnRotate;
     }
 
     public bool IsPointerOverUI() => EventSystem.current.IsPointerOverGameObject();
@@ -46,5 +48,10 @@ public class InputManager : MonoBehaviour
     private void OnExit(InputAction.CallbackContext context)
     {
         Exit?.Invoke();
+    }
+
+    private void OnRotate(InputAction.CallbackContext context)
+    {
+        Rotate?.Invoke();
     }
 }
