@@ -583,6 +583,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _placementSystem: {fileID: 929227343}
+  _shop: {fileID: 180736368}
+  _inputManager: {fileID: 2143517558}
 --- !u!114 &698739655
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -874,7 +876,8 @@ MonoBehaviour:
   distanceBetweenGrid: 0.02
   _gridVisualization: {fileID: 1409535007}
   _previewSystem:
-    previewYOffset: 0.06
+    _previewYOffset: 0.06
+    _indicatorYOffset: 0.015
     _cellIndicator: {fileID: 1912834376}
     _previewMaterialsPrefab: {fileID: 2100000, guid: 4351e60107b66114691ca5267cb952ba, type: 2}
 --- !u!1 &986645190
@@ -1616,7 +1619,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2143517557}
   - {fileID: 929227342}
   - {fileID: 1912834377}
   - {fileID: 1290866696}
@@ -2136,12 +2138,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2143517556}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1627351675}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2143517558
 MonoBehaviour:
@@ -2168,6 +2170,7 @@ SceneRoots:
   - {fileID: 832575519}
   - {fileID: 986645191}
   - {fileID: 698739656}
+  - {fileID: 2143517557}
   - {fileID: 1627351675}
   - {fileID: 1038961973}
   - {fileID: 634176368}

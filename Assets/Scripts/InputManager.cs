@@ -9,22 +9,37 @@ public class InputManager : MonoBehaviour
     [SerializeField] private Camera _sceneCamera;
     [SerializeField] private LayerMask _placementLayerMask;
     private InputSystem_Actions _input;
-    
+
     private Vector3 _lastPosition;
+
     public event Action Clicked;
     public event Action Exit;
     public event Action Rotate;
+    public event Action ShopOpened;
 
     [Inject]
     private void Constract(InputSystem_Actions input)
     {
         _input = input;
-        _input.Player.Attack.started += OnClick;
+        _input.Player.Place.started += OnClick;
         _input.UI.Cancel.started += OnExit;
         _input.Player.Rotate.started += OnRotate;
+        _input.UI.OpenShop.started += OnShopOpened;
+    }
+
+    
+
+    private void OnDisable()
+    {
+        _input.Player.Place.started -= OnClick;
+        _input.UI.Cancel.started -= OnExit;
+        _input.Player.Rotate.started -= OnRotate;
+        _input.UI.OpenShop.started -= OnShopOpened;
     }
 
     public bool IsPointerOverUI() => EventSystem.current.IsPointerOverGameObject();
+    
+    public bool IsPlayerInputDisabled() => !_input.Player.enabled;
 
     public Vector3 GetSelectedMapPosition()
     {
@@ -40,6 +55,14 @@ public class InputManager : MonoBehaviour
         return _lastPosition;
     }
 
+    public void SetPlayerMap(bool isEnabled)
+    {
+        if (isEnabled)
+            _input.Player.Enable();
+        else
+            _input.Player.Disable();
+    }
+
     private void OnClick(InputAction.CallbackContext context)
     {
         Clicked?.Invoke();
@@ -53,5 +76,9 @@ public class InputManager : MonoBehaviour
     private void OnRotate(InputAction.CallbackContext context)
     {
         Rotate?.Invoke();
+    }
+    private void OnShopOpened(InputAction.CallbackContext context)
+    {
+        ShopOpened?.Invoke();
     }
 }

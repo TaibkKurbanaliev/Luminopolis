@@ -78,7 +78,7 @@ public class PlacementSystem : MonoBehaviour
 
     private void Update()
     {
-        if (_selectedObject == null)
+        if (_selectedObject == null || _inputManager.IsPlayerInputDisabled())
         {
             return;
         }

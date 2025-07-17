@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Shop : MonoBehaviour
 {
+    public event Action Closed;
+
     [SerializeField] private List<ShopCategoryButton> _categoryButtons;
     [SerializeField] private ShopView _shopView;
 
@@ -30,7 +32,7 @@ public class Shop : MonoBehaviour
 
     private void OnItemBuyed(Building building)
     {
-        gameObject.SetActive(false);
+        Closed?.Invoke();
     }
 
     private void OnCategoryClicked(ShopCategoryButton button)
