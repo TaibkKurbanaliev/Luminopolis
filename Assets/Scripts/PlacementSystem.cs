@@ -63,7 +63,7 @@ public class PlacementSystem : MonoBehaviour
         Vector3 mousePosition = _inputManager.GetSelectedMapPosition();
         Vector3Int gridPosition = _grid.WorldToCell(new Vector3(mousePosition.x + _grid.cellSize.x / 2, mousePosition.y, mousePosition.z + _grid.cellSize.z / 2));
 
-        bool placementValidity = _gridData.CanPlaceObject(gridPosition, _selectedObject.BuildingData.Size);
+        bool placementValidity = _gridData.CanPlaceObject(gridPosition, _selectedObject.BuildingData.Size, _selectedObject.transform.right);
 
         if (placementValidity == false)
         {
@@ -72,7 +72,7 @@ public class PlacementSystem : MonoBehaviour
 
         GameObject building = Instantiate(_selectedObject.gameObject);
         building.transform.localPosition = _grid.CellToWorld(gridPosition);
-        _gridData.PlaceObject(gridPosition, _selectedObject.BuildingData.Size);
+        _gridData.PlaceObject(gridPosition, _selectedObject.BuildingData.Size, _selectedObject.transform.right);
     }
 
 
@@ -85,11 +85,15 @@ public class PlacementSystem : MonoBehaviour
 
         Vector3 mousePosition = _inputManager.GetSelectedMapPosition();
         _mouseIndicator.transform.position = mousePosition;
-        Vector3Int gridPosition = _grid.WorldToCell(new Vector3(mousePosition.x + _grid.cellSize.x / 2, mousePosition.y, mousePosition.z + _grid.cellSize.z / 2));
+        var gridOffset = _grid.cellSize.z / 2;
+        Vector3Int gridPosition = _grid.WorldToCell(new Vector3(mousePosition.x + gridOffset, mousePosition.y, mousePosition.z + gridOffset));
 
-        bool placementValidity = _gridData.CanPlaceObject(gridPosition, _selectedObject.BuildingData.Size);
-        
-        _previewSystem.UpdatePosition(_grid.CellToWorld(gridPosition), placementValidity);
+        bool placementValidity = _gridData.CanPlaceObject(gridPosition, _selectedObject.BuildingData.Size, _selectedObject.transform.right);
+
+        var previewPosition = _grid.CellToWorld(gridPosition);
+        previewPosition.x += gridOffset;
+        previewPosition.z += gridOffset;
+        _previewSystem.UpdatePosition(previewPosition, placementValidity);
     }
 
     private void OnBuildingBuyed(Building building)
@@ -99,6 +103,7 @@ public class PlacementSystem : MonoBehaviour
 
     private void RotateStructure()
     {
+        Debug.Log("Kek");
         var rotationAngle = 90f;
         _previewSystem.UpdateRotation();
         _selectedObject.transform.Rotate(0f, rotationAngle, 0f);

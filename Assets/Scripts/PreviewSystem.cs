@@ -48,6 +48,7 @@ public class PreviewSystem
         var rotationAngle = 90.0f;
 
         _previewObject.transform.Rotate(0f, rotationAngle, 0f);
+        _cellIndicator.transform.Rotate(0f, 0f, rotationAngle);
     }
 
     private void AppllyFeedBack(bool validity)
