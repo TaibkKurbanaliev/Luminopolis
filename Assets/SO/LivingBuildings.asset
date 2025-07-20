@@ -15,3 +15,4 @@ MonoBehaviour:
   _buildings:
   - {fileID: -3343885426052099995, guid: 22106dc63dce41746ad234a91af2d657, type: 3}
   - {fileID: 6914642741131226713, guid: 121f662ea65e2cf40a50c66470757a9e, type: 3}
+  - {fileID: -7150055729038798740, guid: 6a690a756dbd65141a09a3ad7fafacc4, type: 3}

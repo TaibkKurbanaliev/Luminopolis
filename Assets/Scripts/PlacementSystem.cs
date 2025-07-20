@@ -1,4 +1,6 @@
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class PlacementSystem : MonoBehaviour
 {
@@ -12,6 +14,7 @@ public class PlacementSystem : MonoBehaviour
 
     private Building _selectedObject;
     private GridData _gridData;
+    private Vector2 _objectOffset;
 
     public void Initialize()
     {
@@ -34,7 +37,8 @@ public class PlacementSystem : MonoBehaviour
     public void StartPlacement(Building building)
     {
         StopPlacement();
-        _selectedObject = building;
+        _selectedObject = Instantiate(building);
+        _selectedObject.gameObject.GetComponent<MeshRenderer>().enabled = false;
         _gridVisualization.SetActive(true);
         _previewSystem.StartShowingPlacementPreview(building.gameObject, building.BuildingData.Size);
         _inputManager.Clicked += PlaceStructure;
@@ -72,6 +76,10 @@ public class PlacementSystem : MonoBehaviour
 
         GameObject building = Instantiate(_selectedObject.gameObject);
         building.transform.localPosition = _grid.CellToWorld(gridPosition);
+        building.transform.position = new Vector3(building.transform.position.x + _objectOffset.x, 
+                                                  building.transform.position.y, 
+                                                  building.transform.position.z + _objectOffset.y);
+        building.GetComponent<MeshRenderer>().enabled = true;
         _gridData.PlaceObject(gridPosition, _selectedObject.BuildingData.Size, _selectedObject.transform.right);
     }
 
@@ -89,11 +97,23 @@ public class PlacementSystem : MonoBehaviour
         Vector3Int gridPosition = _grid.WorldToCell(new Vector3(mousePosition.x + gridOffset, mousePosition.y, mousePosition.z + gridOffset));
 
         bool placementValidity = _gridData.CanPlaceObject(gridPosition, _selectedObject.BuildingData.Size, _selectedObject.transform.right);
-
+        CalculateObjectOffset();
         var previewPosition = _grid.CellToWorld(gridPosition);
-        previewPosition.x += gridOffset;
-        previewPosition.z += gridOffset;
+        previewPosition.x += _objectOffset.x;
+        previewPosition.z += _objectOffset.y;
         _previewSystem.UpdatePosition(previewPosition, placementValidity);
+    }
+
+    private void CalculateObjectOffset()
+    {
+        if (_selectedObject.BuildingData.PlaceDirection == Direction.Right)
+            _objectOffset = new Vector2(_selectedObject.BuildingData.Size.x - 1, _selectedObject.BuildingData.Size.y - 1) * 0.5f;
+        else if (_selectedObject.BuildingData.PlaceDirection == Direction.Up)
+            _objectOffset = new Vector2(-_selectedObject.BuildingData.Size.y + 1, _selectedObject.BuildingData.Size.x - 1) * 0.5f;
+        else if (_selectedObject.BuildingData.PlaceDirection == Direction.Left)
+            _objectOffset = new Vector2(-_selectedObject.BuildingData.Size.x + 1, -_selectedObject.BuildingData.Size.y + 1) * 0.5f;
+        else if (_selectedObject.BuildingData.PlaceDirection == Direction.Down)
+            _objectOffset = new Vector2(_selectedObject.BuildingData.Size.y - 1, -_selectedObject.BuildingData.Size.x + 1) * 0.5f;
     }
 
     private void OnBuildingBuyed(Building building)
@@ -103,9 +123,10 @@ public class PlacementSystem : MonoBehaviour
 
     private void RotateStructure()
     {
-        Debug.Log("Kek");
         var rotationAngle = 90f;
         _previewSystem.UpdateRotation();
         _selectedObject.transform.Rotate(0f, rotationAngle, 0f);
+        _selectedObject.BuildingData.Rotate();
+        Debug.Log(_selectedObject.BuildingData.PlaceDirection);
     }
 }
