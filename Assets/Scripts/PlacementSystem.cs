@@ -58,11 +58,10 @@ public class PlacementSystem : MonoBehaviour
 
     private void PlaceStructure()
     {
-        if (_inputManager.IsPointerOverUI())
+        /*if (_inputManager.IsPointerOverUI())
         {
             return;
-        } 
-
+        }*/ 
 
         Vector3 mousePosition = _inputManager.GetSelectedMapPosition();
         Vector3Int gridPosition = _grid.WorldToCell(new Vector3(mousePosition.x + _grid.cellSize.x / 2, mousePosition.y, mousePosition.z + _grid.cellSize.z / 2));

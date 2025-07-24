@@ -2,12 +2,18 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using Zenject;
 
 public class InputManager : MonoBehaviour
 {
     [SerializeField] private Camera _sceneCamera;
     [SerializeField] private LayerMask _placementLayerMask;
+    [Header("GUI Buttons")]
+    [SerializeField] private Button _shopButton;
+    [SerializeField] private Button _rotateButton;
+    [SerializeField] private Button _placeButton;
+
     private InputSystem_Actions _input;
 
     private Vector3 _lastPosition;
@@ -25,9 +31,10 @@ public class InputManager : MonoBehaviour
         _input.UI.Cancel.started += OnExit;
         _input.Player.Rotate.started += OnRotate;
         _input.UI.OpenShop.started += OnShopOpened;
+        _shopButton.onClick.AddListener(OnShopOpened);
+        _rotateButton.onClick.AddListener(OnRotate);
+        _placeButton.onClick.AddListener(OnClick);
     }
-
-    
 
     private void OnDisable()
     {
@@ -35,6 +42,9 @@ public class InputManager : MonoBehaviour
         _input.UI.Cancel.started -= OnExit;
         _input.Player.Rotate.started -= OnRotate;
         _input.UI.OpenShop.started -= OnShopOpened;
+        _shopButton.onClick.RemoveListener(OnShopOpened);
+        _rotateButton.onClick.RemoveListener(OnRotate);
+        _placeButton.onClick.RemoveListener(OnClick);
     }
 
     public bool IsPointerOverUI() => EventSystem.current.IsPointerOverGameObject();
@@ -67,6 +77,11 @@ public class InputManager : MonoBehaviour
     {
         Clicked?.Invoke();
     }
+    private void OnClick()
+    {
+        Clicked?.Invoke();
+        Debug.Log("Kek");
+    }
 
     private void OnExit(InputAction.CallbackContext context)
     {
@@ -77,7 +92,16 @@ public class InputManager : MonoBehaviour
     {
         Rotate?.Invoke();
     }
+    private void OnRotate()
+    {
+        Rotate?.Invoke();
+    }
+
     private void OnShopOpened(InputAction.CallbackContext context)
+    {
+        ShopOpened?.Invoke();
+    }
+    private void OnShopOpened()
     {
         ShopOpened?.Invoke();
     }
