@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.Windows;
 using Zenject;
 
 public class SceneInstaller : MonoInstaller
@@ -18,5 +19,6 @@ public class SceneInstaller : MonoInstaller
         _placementSystem.Initialize();
 
         _guiManager = new GUIManager(_inputManager, _shop);
+        Container.BindInterfacesAndSelfTo<InputManager>().FromInstance(_inputManager).AsSingle();
     }
 }

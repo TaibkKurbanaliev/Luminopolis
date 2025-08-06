@@ -23,14 +23,20 @@ public class InputManager : MonoBehaviour
     public event Action Rotate;
     public event Action ShopOpened;
 
+    public Vector2 MoveInput => _input.Player.Move.ReadValue<Vector2>();
+    public Vector2 LookInput => _input.Player.Look.ReadValue<Vector2>();
+    public bool IsCameraRotating => _input.Player.RotateCamera.IsPressed();
+
     [Inject]
     private void Constract(InputSystem_Actions input)
     {
         _input = input;
         _input.Player.Place.started += OnClick;
-        _input.UI.Cancel.started += OnExit;
         _input.Player.Rotate.started += OnRotate;
+
+        _input.UI.Cancel.started += OnExit;
         _input.UI.OpenShop.started += OnShopOpened;
+
         _shopButton.onClick.AddListener(OnShopOpened);
         _rotateButton.onClick.AddListener(OnRotate);
         _placeButton.onClick.AddListener(OnClick);
@@ -39,9 +45,11 @@ public class InputManager : MonoBehaviour
     private void OnDisable()
     {
         _input.Player.Place.started -= OnClick;
-        _input.UI.Cancel.started -= OnExit;
         _input.Player.Rotate.started -= OnRotate;
+
+        _input.UI.Cancel.started -= OnExit;
         _input.UI.OpenShop.started -= OnShopOpened;
+
         _shopButton.onClick.RemoveListener(OnShopOpened);
         _rotateButton.onClick.RemoveListener(OnRotate);
         _placeButton.onClick.RemoveListener(OnClick);
@@ -105,4 +113,5 @@ public class InputManager : MonoBehaviour
     {
         ShopOpened?.Invoke();
     }
+
 }
