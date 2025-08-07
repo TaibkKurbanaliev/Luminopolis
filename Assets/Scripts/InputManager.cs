@@ -25,6 +25,8 @@ public class InputManager : MonoBehaviour
 
     public Vector2 MoveInput => _input.Player.Move.ReadValue<Vector2>();
     public Vector2 LookInput => _input.Player.Look.ReadValue<Vector2>();
+    public Vector2 ZoomInput => _input.Player.Zoom.ReadValue<Vector2>();
+    public Vector2 PointerPosition => _input.Player.Position.ReadValue<Vector2>();
     public bool IsCameraRotating => _input.Player.RotateCamera.IsPressed();
 
     [Inject]
