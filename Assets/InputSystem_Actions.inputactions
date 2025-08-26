@@ -15,6 +15,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "MoveToMousePos",
+                    "type": "Button",
+                    "id": "208c9a64-5a12-4ea3-961f-f680df913c66",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Position",
                     "type": "PassThrough",
                     "id": "41541950-86e9-4afa-8e09-568e0f5ffb3f",
@@ -114,6 +123,17 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "Place",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0c1d6899-3fa6-4e43-b14c-10c2b188038e",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "MoveToMousePos",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

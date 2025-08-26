@@ -101,6 +101,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""MoveToMousePos"",
+                    ""type"": ""Button"",
+                    ""id"": ""208c9a64-5a12-4ea3-961f-f680df913c66"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Position"",
                     ""type"": ""PassThrough"",
                     ""id"": ""41541950-86e9-4afa-8e09-568e0f5ffb3f"",
@@ -200,6 +209,17 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""Place"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0c1d6899-3fa6-4e43-b14c-10c2b188038e"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""MoveToMousePos"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1138,6 +1158,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Place = m_Player.FindAction("Place", throwIfNotFound: true);
+        m_Player_MoveToMousePos = m_Player.FindAction("MoveToMousePos", throwIfNotFound: true);
         m_Player_Position = m_Player.FindAction("Position", throwIfNotFound: true);
         m_Player_Zoom = m_Player.FindAction("Zoom", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
@@ -1243,6 +1264,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Place;
+    private readonly InputAction m_Player_MoveToMousePos;
     private readonly InputAction m_Player_Position;
     private readonly InputAction m_Player_Zoom;
     private readonly InputAction m_Player_Move;
@@ -1268,6 +1290,10 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/Place".
         /// </summary>
         public InputAction @Place => m_Wrapper.m_Player_Place;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/MoveToMousePos".
+        /// </summary>
+        public InputAction @MoveToMousePos => m_Wrapper.m_Player_MoveToMousePos;
         /// <summary>
         /// Provides access to the underlying input action "Player/Position".
         /// </summary>
@@ -1337,6 +1363,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Place.started += instance.OnPlace;
             @Place.performed += instance.OnPlace;
             @Place.canceled += instance.OnPlace;
+            @MoveToMousePos.started += instance.OnMoveToMousePos;
+            @MoveToMousePos.performed += instance.OnMoveToMousePos;
+            @MoveToMousePos.canceled += instance.OnMoveToMousePos;
             @Position.started += instance.OnPosition;
             @Position.performed += instance.OnPosition;
             @Position.canceled += instance.OnPosition;
@@ -1381,6 +1410,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Place.started -= instance.OnPlace;
             @Place.performed -= instance.OnPlace;
             @Place.canceled -= instance.OnPlace;
+            @MoveToMousePos.started -= instance.OnMoveToMousePos;
+            @MoveToMousePos.performed -= instance.OnMoveToMousePos;
+            @MoveToMousePos.canceled -= instance.OnMoveToMousePos;
             @Position.started -= instance.OnPosition;
             @Position.performed -= instance.OnPosition;
             @Position.canceled -= instance.OnPosition;
@@ -1729,6 +1761,13 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnPlace(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "MoveToMousePos" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMoveToMousePos(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "Position" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
