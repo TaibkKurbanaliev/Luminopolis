@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
     private NavMeshAgent _agent;
     private StateMachineData _smData;
 
+    [field: SerializeField] public PlayerConfig PlayerConfig { get; private set; }
+
     public StateMachine StateMachine => _stateMachine;
     public InputManager InputManager => _inputManager;
     public NavMeshAgent Agent => _agent;

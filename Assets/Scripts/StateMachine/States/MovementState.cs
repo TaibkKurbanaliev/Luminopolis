@@ -2,13 +2,15 @@ using UnityEngine;
 
 public class MovementState : State
 {
+    private MovementStateConfig _config;
     public MovementState(IStateSwitcher stateMachine, Player player, StateMachineData data) : base(stateMachine, player, data)
     {
+        _config = player.PlayerConfig.MovementStateConfig;
     }
 
     public override void Enter()
     {
-        throw new System.NotImplementedException();
+        Data.Speed = _config.Speed;
     }
 
     public override void Exit()
