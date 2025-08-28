@@ -7,7 +7,7 @@ public class StateMachine : IStateSwitcher
     private List<State> _states;
     private State _currentState;
 
-    public StateMachine(List<State> states)
+    public void Init(List<State> states)
     {
         _states = states;
         _currentState = _states[0];
@@ -29,4 +29,5 @@ public class StateMachine : IStateSwitcher
     public void HandleInput() => _currentState.HandleInput();
     public void Update() => _currentState.Update();
 
+    public void FixedUpdate() => _currentState.FixedUpdate();
 }

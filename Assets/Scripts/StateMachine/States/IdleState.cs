@@ -8,6 +8,7 @@ public class IdleState : State
 
     public override void Enter()
     {
+        Debug.Log("Enter the IdleState");
         Data.IsMoving = false;
     }
 

@@ -23,9 +23,11 @@ public class Player : MonoBehaviour
         _inputManager = input;
         _agent = GetComponent<NavMeshAgent>();
         _smData = new StateMachineData();
-        _stateMachine = new StateMachine(new()
+        _stateMachine = new StateMachine();
+        _stateMachine.Init(new()
         {
-            new IdleState(_stateMachine, this, _smData)
+            new IdleState(_stateMachine, this, _smData),
+            new MovementState(_stateMachine, this, _smData),
         });
     }
 
@@ -33,5 +35,10 @@ public class Player : MonoBehaviour
     {
         _stateMachine.HandleInput();
         _stateMachine.Update();
+    }
+
+    private void FixedUpdate()
+    {
+        _stateMachine.FixedUpdate();
     }
 }

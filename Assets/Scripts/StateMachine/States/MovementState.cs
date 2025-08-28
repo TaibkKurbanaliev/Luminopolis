@@ -1,7 +1,9 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class MovementState : State
 {
+    private float _minVelocityValue = 0.01f;
     private MovementStateConfig _config;
     public MovementState(IStateSwitcher stateMachine, Player player, StateMachineData data) : base(stateMachine, player, data)
     {
@@ -10,26 +12,28 @@ public class MovementState : State
 
     public override void Enter()
     {
+        Debug.Log("Enter the MoveState");
         Data.Speed = _config.Speed;
     }
 
     public override void Exit()
     {
-        throw new System.NotImplementedException();
     }
 
     public override void FixedUpdate()
     {
-        throw new System.NotImplementedException();
+        if (!Player.Agent.hasPath || Player.Agent.velocity.sqrMagnitude == 0f)
+        {
+            StateMachine.SwitchState<IdleState>();
+        }
+        Player.Agent.SetDestination(Data.TargetPosition);
     }
 
     public override void HandleInput()
     {
-        throw new System.NotImplementedException();
     }
 
     public override void Update()
     {
-        throw new System.NotImplementedException();
     }
 }

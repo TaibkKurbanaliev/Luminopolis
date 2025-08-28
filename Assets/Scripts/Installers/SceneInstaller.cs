@@ -19,6 +19,6 @@ public class SceneInstaller : MonoInstaller
         _placementSystem.Initialize();
 
         _guiManager = new GUIManager(_inputManager, _shop);
-        Container.BindInterfacesAndSelfTo<InputManager>().FromInstance(_inputManager).AsSingle();
+        Container.BindInterfacesAndSelfTo<InputManager>().FromInstance(_inputManager).AsSingle().NonLazy();
     }
 }

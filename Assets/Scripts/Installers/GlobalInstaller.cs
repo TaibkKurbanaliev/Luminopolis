@@ -9,6 +9,6 @@ public class GlobalInstaller : MonoInstaller
         var input = new InputSystem_Actions();
         input.Enable();
 
-        Container.BindInterfacesAndSelfTo<InputSystem_Actions>().FromInstance(input).AsSingle();
+        Container.BindInterfacesAndSelfTo<InputSystem_Actions>().FromInstance(input).AsSingle().NonLazy();
     }
 }
