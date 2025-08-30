@@ -14,6 +14,8 @@ public class MovementState : State
     {
         Debug.Log("Enter the MoveState");
         Data.Speed = _config.Speed;
+        Player.Agent.speed = Data.Speed;
+        Player.Agent.SetDestination(Data.TargetPosition);
     }
 
     public override void Exit()
@@ -22,11 +24,6 @@ public class MovementState : State
 
     public override void FixedUpdate()
     {
-        if (!Player.Agent.hasPath || Player.Agent.velocity.sqrMagnitude == 0f)
-        {
-            StateMachine.SwitchState<IdleState>();
-        }
-        Player.Agent.SetDestination(Data.TargetPosition);
     }
 
     public override void HandleInput()
@@ -35,5 +32,14 @@ public class MovementState : State
 
     public override void Update()
     {
+        if (!Player.Agent.hasPath && Player.Agent.velocity.sqrMagnitude == 0f)
+        {
+            Data.IsMoving = false;
+            StateMachine.SwitchState<IdleState>();
+        }
+
+        Player.Agent.SetDestination(Data.TargetPosition);
+
+        Player.View.SetSpeed(Player.Agent.velocity.magnitude);
     }
 }

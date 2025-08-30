@@ -32,6 +32,8 @@ public class IdleState : State
     public override void Update()
     {
         if (Data.IsMoving)
+        {
             StateMachine.SwitchState<MovementState>();
+        }
     }
 }

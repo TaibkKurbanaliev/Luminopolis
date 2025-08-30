@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: PlayerConfig
   m_EditorClassIdentifier: 
   <MovementStateConfig>k__BackingField:
-    <Speed>k__BackingField: 2.4
+    <Speed>k__BackingField: 2
