@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     private NavMeshAgent _agent;
     private StateMachineData _smData;
     private PlayerView _playerView;
+    private Wallet _wallet;
 
     [field: SerializeField] public PlayerConfig PlayerConfig { get; private set; }
 
@@ -19,11 +20,13 @@ public class Player : MonoBehaviour
     public InputManager InputManager => _inputManager;
     public NavMeshAgent Agent => _agent;
     public PlayerView View  => _playerView;
+    public Wallet Wallet => _wallet;
 
     [Inject]
     private void Constract(InputManager input)
     {
         _inputManager = input;
+        _wallet = new Wallet();
         _agent = GetComponent<NavMeshAgent>();
         _playerView = GetComponent<PlayerView>();
         _playerView.Initialize();
