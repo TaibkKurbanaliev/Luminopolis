@@ -10,5 +10,10 @@ public class GlobalInstaller : MonoInstaller
         input.Enable();
 
         Container.BindInterfacesAndSelfTo<InputSystem_Actions>().FromInstance(input).AsSingle().NonLazy();
+
+        if (SystemInfo.deviceType == DeviceType.Desktop)
+        {
+            Container.Bind<IStorage>().To<JsonToFileStorage>().FromNew().AsSingle().NonLazy();
+        }
     }
 }
