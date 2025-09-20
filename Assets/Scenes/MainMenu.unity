@@ -198,6 +198,7 @@ GameObject:
   m_Component:
   - component: {fileID: 267452050}
   - component: {fileID: 267452051}
+  - component: {fileID: 267452052}
   m_Layer: 5
   m_Name: OptionsMenu
   m_TagString: Untagged
@@ -239,6 +240,26 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &267452052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 267452049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c4ecd3359761a546addec7e156b9cd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Setting
+  _video:
+    _screenModeSelector: {fileID: 1625092650}
+    _screenResolutionSelector: {fileID: 1814694244}
+    _vSyncToggle: {fileID: 2001640135}
+    _hdrToggle: {fileID: 1998612284}
+  _language:
+    _languageSelector: {fileID: 0}
+    _subtitlesLanguageSelector: {fileID: 0}
 --- !u!1001 &287183040
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1527,8 +1548,8 @@ RectTransform:
   - {fileID: 1814694243}
   - {fileID: 1697516609}
   - {fileID: 2001640134}
-  - {fileID: 1358234921}
   - {fileID: 1754848302}
+  - {fileID: 1358234921}
   m_Father: {fileID: 681708043}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2417,6 +2438,7 @@ MonoBehaviour:
   _mainMenu: {fileID: 1402366468}
   _settingsMenu: {fileID: 267452049}
   _backButton: {fileID: 1983512939}
+  _settings: {fileID: 0}
 --- !u!1 &1446882361
 GameObject:
   m_ObjectHideFlags: 0
@@ -2729,6 +2751,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1031491050}
     m_Modifications:
+    - target: {fileID: 2600978423188121114, guid: 3cdb3aa7559ab0c4e96e2dc41a9b2caa, type: 3}
+      propertyPath: _optionsNames
+      value: 
+      objectReference: {fileID: 11400000, guid: 3bd134a5c2c791d4fa30cd516300b71b, type: 2}
     - target: {fileID: 3325063108953840594, guid: 3cdb3aa7559ab0c4e96e2dc41a9b2caa, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2823,6 +2849,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3325063108953840594, guid: 3cdb3aa7559ab0c4e96e2dc41a9b2caa, type: 3}
   m_PrefabInstance: {fileID: 1625092648}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1625092650 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2600978423188121114, guid: 3cdb3aa7559ab0c4e96e2dc41a9b2caa, type: 3}
+  m_PrefabInstance: {fileID: 1625092648}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15fa163ed230e9f4f8630302e1ce8f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SelectorAnimation
 --- !u!1 &1697516608
 GameObject:
   m_ObjectHideFlags: 0
@@ -3103,6 +3140,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1031491050}
     m_Modifications:
+    - target: {fileID: 2600978423188121114, guid: 3cdb3aa7559ab0c4e96e2dc41a9b2caa, type: 3}
+      propertyPath: _options
+      value: 
+      objectReference: {fileID: 11400000, guid: cec043af784e01744bbee6a8ae754e59, type: 2}
+    - target: {fileID: 2600978423188121114, guid: 3cdb3aa7559ab0c4e96e2dc41a9b2caa, type: 3}
+      propertyPath: _optionsNames
+      value: 
+      objectReference: {fileID: 11400000, guid: cec043af784e01744bbee6a8ae754e59, type: 2}
     - target: {fileID: 3325063108953840594, guid: 3cdb3aa7559ab0c4e96e2dc41a9b2caa, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3197,6 +3242,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3325063108953840594, guid: 3cdb3aa7559ab0c4e96e2dc41a9b2caa, type: 3}
   m_PrefabInstance: {fileID: 1814694242}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1814694244 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2600978423188121114, guid: 3cdb3aa7559ab0c4e96e2dc41a9b2caa, type: 3}
+  m_PrefabInstance: {fileID: 1814694242}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15fa163ed230e9f4f8630302e1ce8f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SelectorAnimation
 --- !u!1 &1852601329
 GameObject:
   m_ObjectHideFlags: 0
@@ -3666,6 +3722,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2978971577090020622, guid: 7eb421e8d6da42d49b7da302a3f1eb85, type: 3}
   m_PrefabInstance: {fileID: 819860398}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1998612284 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1237630865243165554, guid: c98de3d006112334ca3524ef59f274b8, type: 3}
+  m_PrefabInstance: {fileID: 1550904263}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 161e7bc0a8a49b14785df10115202160, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ToggleSwitch
 --- !u!1 &1998761810 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1896637392633249412, guid: ed9cec681ef210f45862f11ad8792dbc, type: 3}
@@ -3676,6 +3743,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1405539227675657572, guid: c98de3d006112334ca3524ef59f274b8, type: 3}
   m_PrefabInstance: {fileID: 9024291898185352435}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2001640135 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1237630865243165554, guid: c98de3d006112334ca3524ef59f274b8, type: 3}
+  m_PrefabInstance: {fileID: 9024291898185352435}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 161e7bc0a8a49b14785df10115202160, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ToggleSwitch
 --- !u!224 &2040512680 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2978971577090020622, guid: 7eb421e8d6da42d49b7da302a3f1eb85, type: 3}

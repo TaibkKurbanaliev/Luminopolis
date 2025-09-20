@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -7,6 +8,8 @@ using UnityEngine.UI;
 [RequireComponent(typeof(AudioSource))]
 public class ButtonAnimation : MonoBehaviour
 {
+    public event Action Clicked;
+
     [SerializeField] private float _fadeTime = 0.2f;
     [SerializeField] private float _scale = 0.9f;
     [SerializeField] private float _hoverScale = 0.95f;
@@ -52,6 +55,7 @@ public class ButtonAnimation : MonoBehaviour
         _text.color = _hoverColor;
         _button.transform.DOScale(_originalScale * _scale, _fadeTime);
         _audioSource.PlayOneShot(_clickSound);
+        Clicked?.Invoke();
     }
 
     public virtual void DeSelect()

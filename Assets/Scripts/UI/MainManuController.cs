@@ -8,6 +8,7 @@ public class MainManuController : MonoBehaviour
     [SerializeField] private GameObject _mainMenu;
     [SerializeField] private GameObject _settingsMenu;
     [SerializeField] private GameObject _backButton;
+    [SerializeField] private Setting _settings;
 
     private GameObject _currentOpened;
     private IStorage _storage;
@@ -20,23 +21,15 @@ public class MainManuController : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log("Start");
         _currentOpened = _mainMenu;
+        _settingsMenu.SetActive(false);
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            var test = new TestSaver() { Name = "Kek", Description = "Pavlisoshvili" };
-            _storage.Save(test);
-        }
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            _storage.Load<TestSaver>(data =>
-            {
-                Debug.Log(data.Name);
-                Debug.Log(data.Description);
-            });
         }
     }
 

@@ -1,13 +1,17 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class SelectorAnimation : MonoBehaviour
+public class Selector : MonoBehaviour
 {
+    public event Action<string> ValueChanged;
+
     public enum Direction { LeftToRight, RightToLeft }
 
     [SerializeField] private TextMeshProUGUI _text;
-    [SerializeField] private OptionsSO _options;
+    [SerializeField] private OptionsSO _optionsNames;
     [SerializeField] private float _swapTimeBetweenCharacters;
     [SerializeField] private float _swapTimeBetweenOptions;
     [SerializeField] private float _vertexStepDelay = 0.015f;
@@ -16,29 +20,38 @@ public class SelectorAnimation : MonoBehaviour
     private int _currentIndex = 0;
     private bool _isSwitching = false;
     private Direction _direction = Direction.LeftToRight;
+    private List<string> _options;
 
-    private void Awake()
+    public void Initialize(List<string> options, bool useOptionsValue = false)
     {
-        _currentSelect = _options.SelectedOptions[_currentIndex];
+        _options = options;
+
+        if (useOptionsValue)
+            _optionsNames.SetOptionsValue(_options);
+
+        _currentSelect = _optionsNames.SelectedOptions[_currentIndex];
         _text.text = _currentSelect;
+        
     }
 
     public void LeftSelect()
     {
         if (_isSwitching) return;
-        _currentIndex = _currentIndex == 0 ? _options.SelectedOptions.Count - 1 : _currentIndex - 1;
-        _currentSelect = _options.SelectedOptions[_currentIndex];
+        _currentIndex = _currentIndex == 0 ? _optionsNames.SelectedOptions.Count - 1 : _currentIndex - 1;
+        _currentSelect = _optionsNames.SelectedOptions[_currentIndex];
         _direction = Direction.RightToLeft;
         StartCoroutine(PlayScrollAnimation());
+        ValueChanged?.Invoke(_options[_currentIndex]);
     }
 
     public void RightSelect()
     {
         if (_isSwitching) return;
-        _currentIndex = _currentIndex == _options.SelectedOptions.Count - 1 ? 0 : _currentIndex + 1;
-        _currentSelect = _options.SelectedOptions[_currentIndex];
+        _currentIndex = _currentIndex == _optionsNames.SelectedOptions.Count - 1 ? 0 : _currentIndex + 1;
+        _currentSelect = _optionsNames.SelectedOptions[_currentIndex];
         _direction = Direction.LeftToRight;
         StartCoroutine(PlayScrollAnimation());
+        ValueChanged?.Invoke(_options[_currentIndex]);
     }
 
     public IEnumerator PlayScrollAnimation()

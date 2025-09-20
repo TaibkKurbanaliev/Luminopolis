@@ -1,15 +1,50 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ToggleSwitch : MonoBehaviour
 {
-    [SerializeField, Range(0, 1)] private float _switchValue;
-    [SerializeField, Range(0, 1)] private float _animationDuration;
-    [SerializeField] private AnimationCurve _animationCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
+    public event Action<bool> Switched;
 
-    private Slider _slider;
+    [SerializeField] ButtonAnimation _on;
+    [SerializeField] ButtonAnimation _off;
 
     public bool CurrentValue { get; private set; }
 
-    private bool _previousValue;
+
+    public void Initialize(bool currentValue = false)
+    {
+        CurrentValue = currentValue;
+
+        if (CurrentValue)
+            _on.Select();
+        else
+            _off.Select();
+    }
+
+    public void OnEnable()
+    {
+        _on.Clicked += OnTurnOn;
+        _off.Clicked += OnTurnOff;
+    }
+
+    private void OnDisable()
+    {
+        _on.Clicked -= OnTurnOn;
+        _off.Clicked -= OnTurnOff;
+    }
+
+    private void OnTurnOff()
+    {
+        CurrentValue = false;
+        _on.DeSelect();
+        Switched?.Invoke(CurrentValue);
+    }
+
+    private void OnTurnOn()
+    {
+        CurrentValue = true;
+        _off.DeSelect();
+        Switched?.Invoke(CurrentValue);
+    }
 }

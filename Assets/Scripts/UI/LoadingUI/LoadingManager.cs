@@ -29,6 +29,12 @@ public class LoadingManager : MonoBehaviour
 
     public void LoadScene(string sceneName)
     {
+        if (_sceneTransition == null)
+        {
+            SceneManager.LoadScene(sceneName);
+            return;
+        }
+            
         StartCoroutine(LoadSceneAsync(sceneName));
     }
 
