@@ -27,6 +27,7 @@ public class Setting : MonoBehaviour
 
     private void Start()
     {
+        _sound.Initialize();
         _video.Initialize();
     }
 
