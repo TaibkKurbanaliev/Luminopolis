@@ -142,6 +142,7 @@ MonoBehaviour:
   _clickSound: {fileID: 0}
   _hoverSound: {fileID: 0}
   _hoverColor: {r: 0.41176474, g: 0.19607845, b: 0.1137255, a: 1}
+  _text: {fileID: 8998270475036561377}
 --- !u!114 &1252655956713835570
 MonoBehaviour:
   m_ObjectHideFlags: 0

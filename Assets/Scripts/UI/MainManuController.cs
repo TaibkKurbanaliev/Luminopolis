@@ -5,10 +5,21 @@ public class MainManuController : MonoBehaviour
 {
     private const string PlayMode = "PlayMode";
 
+    // main
+    [Header("Main")]
     [SerializeField] private GameObject _mainMenu;
     [SerializeField] private GameObject _settingsMenu;
     [SerializeField] private GameObject _backButton;
+
+    // settings
+    [Header("Settings")]
     [SerializeField] private Setting _settings;
+
+    [SerializeField] private GameObject _videoPanel;
+    [SerializeField] private GameObject _soundPanel;
+    [SerializeField] private GameObject _languagePanel;
+    [SerializeField] private GameObject _controlPanel;
+
 
     private GameObject _currentOpened;
     private IStorage _storage;
@@ -21,8 +32,11 @@ public class MainManuController : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("Start");
+        Debug.developerConsoleVisible = true;
         _currentOpened = _mainMenu;
+
+        ClearSettings();
+
         _settingsMenu.SetActive(false);
     }
 
@@ -41,6 +55,7 @@ public class MainManuController : MonoBehaviour
 
     public void Settings()
     {
+        ClearSettings();
         _backButton.SetActive(true);
         _currentOpened.SetActive(false);
         _settingsMenu.SetActive(true);
@@ -58,6 +73,14 @@ public class MainManuController : MonoBehaviour
     public void Exit()
     {
         Application.Quit();
+    }
+
+    private void ClearSettings()
+    {
+        _videoPanel.SetActive(true);
+        _soundPanel.SetActive(false);
+        _languagePanel.SetActive(false);
+        _controlPanel.SetActive(false);
     }
 }
 

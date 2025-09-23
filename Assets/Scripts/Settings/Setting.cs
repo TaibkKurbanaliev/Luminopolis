@@ -27,13 +27,16 @@ public class Setting : MonoBehaviour
 
     private void Start()
     {
-        _sound.Initialize();
         _video.Initialize();
+        _sound.Initialize();
+        _language.Initialize();
     }
 
     private void OnDestroy()
     {
         _video.Dispose();
+        _language.Dispose();
+        _sound.Dispose();
     }
 
     public void Save()
@@ -44,8 +47,8 @@ public class Setting : MonoBehaviour
         _settingData.HDR = _video.HDR;
         _settingData.QualityLevel = Quality.Level;
         _settingData.QualityData = Quality.QualityData;
-        _settingData.GameLanguage = _language.GameLanguage;
-        _settingData.SubtitlesLanguage = _language.SubtitlesLanguage;
+        _settingData.GameLanguage = _language.TextLanguage;
+        _settingData.SubtitlesLanguage = _language.VoiceLanguage;
         _settingData.SubtitlesIsEnabled = _language.SubtitlesIsEnabled;
         
         _storage.Save(_settingData);

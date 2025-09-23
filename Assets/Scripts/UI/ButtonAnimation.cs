@@ -25,7 +25,7 @@ public class ButtonAnimation : MonoBehaviour
 
     public bool IsHighlighted { get; private set; }
 
-    private void Start()
+    private void Awake()
     {
         _audioSource = GetComponent<AudioSource>();
         _button = GetComponent<Button>();
@@ -55,6 +55,7 @@ public class ButtonAnimation : MonoBehaviour
         _text.color = _hoverColor;
         _button.transform.DOScale(_originalScale * _scale, _fadeTime);
         _audioSource.PlayOneShot(_clickSound);
+        _text.fontStyle = FontStyles.Bold;
         Clicked?.Invoke();
     }
 
@@ -62,5 +63,6 @@ public class ButtonAnimation : MonoBehaviour
     {
         _text.color = _originalColor;
         _button.transform.DOScale(_originalScale, _fadeTime);
+        _text.fontStyle = FontStyles.Normal;
     }
 }
