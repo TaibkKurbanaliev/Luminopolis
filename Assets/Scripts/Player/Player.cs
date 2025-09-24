@@ -3,31 +3,30 @@ using UnityEngine;
 using UnityEngine.AI;
 using Zenject;
 
-[RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(PlayerView))]
 public class Player : MonoBehaviour
 {
     private StateMachine _stateMachine;
     private InputManager _inputManager;
-    private NavMeshAgent _agent;
     private StateMachineData _smData;
     private PlayerView _playerView;
     private Wallet _wallet;
 
     [field: SerializeField] public PlayerConfig PlayerConfig { get; private set; }
+    [field: SerializeField] public CharacterController CharacterController { get; private set; }
 
     public StateMachine StateMachine => _stateMachine;
     public InputManager InputManager => _inputManager;
-    public NavMeshAgent Agent => _agent;
     public PlayerView View  => _playerView;
     public Wallet Wallet => _wallet;
 
     [Inject]
     private void Constract(InputManager input)
     {
+        CharacterController = GetComponent<CharacterController>();
         _inputManager = input;
         _wallet = new Wallet();
-        _agent = GetComponent<NavMeshAgent>();
         _playerView = GetComponent<PlayerView>();
         _playerView.Initialize();
         _smData = new StateMachineData();

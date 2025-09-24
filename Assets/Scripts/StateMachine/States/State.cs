@@ -2,13 +2,13 @@ using UnityEngine;
 
 public abstract class State 
 {
-    protected readonly IStateSwitcher StateMachine;
+    protected readonly IStateSwitcher StateSwitcher;
     protected readonly Player Player;
 
     protected StateMachineData Data;
     public State(IStateSwitcher stateMachine, Player player, StateMachineData data)
     {
-        StateMachine = stateMachine;
+        StateSwitcher = stateMachine;
         Player = player;
         Data = data;
     }
