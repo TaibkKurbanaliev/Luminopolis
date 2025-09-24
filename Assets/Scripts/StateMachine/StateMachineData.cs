@@ -9,6 +9,7 @@ public class StateMachineData
     public bool IsMoving;
 
     private float _speed;
+    private float _rotationSpeed;
     private float _drag;
     private Vector2 _input;
 
@@ -33,6 +34,17 @@ public class StateMachineData
                 throw new ArgumentOutOfRangeException(nameof(value));
 
             _speed = value;
+        }
+    }
+    public float RotationSpeed
+    {
+        get => _rotationSpeed;
+        set
+        {
+            if (value < 0)
+                throw new ArgumentOutOfRangeException(nameof(value));
+
+            _rotationSpeed = value;
         }
     }
 

@@ -31,10 +31,11 @@ public class Player : MonoBehaviour
         _playerView.Initialize();
         _smData = new StateMachineData();
         _stateMachine = new StateMachine();
+
         _stateMachine.Init(new()
         {
             new IdleState(_stateMachine, this, _smData),
-            new MovementState(_stateMachine, this, _smData),
+            new WalkState(_stateMachine, this, _smData),
         });
     }
 

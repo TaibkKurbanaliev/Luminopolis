@@ -5,21 +5,15 @@ using UnityEngine.Windows;
 
 public class MovementState : State
 {
-    private float _minVelocityValue = 0.01f;
-    private MovementStateConfig _config;
     private Vector3 _moveDir;
 
     public MovementState(IStateSwitcher stateMachine, Player player, StateMachineData data) : base(stateMachine, player, data)
     {
-        _config = player.PlayerConfig.MovementStateConfig;
+        
     }
 
     public override void Enter()
     {
-        Debug.Log("Enter the MoveState");
-        Data.Speed = _config.MoveSpeed;
-        Data.Acceleration = _config.Acceleration;
-        Data.Drag = _config.Drag;
     }
 
     public override void Exit()
@@ -28,6 +22,21 @@ public class MovementState : State
 
     public override void FixedUpdate()
     {
+        Rotate();
+        Move();
+    }
+
+    public override void HandleInput()
+    {
+    }
+
+    public override void Update()
+    {
+        
+    }
+    private void Move()
+    {
+        _moveDir = new Vector3(Data.Input.x, 0, Data.Input.y);
         var movementDelta = _moveDir * Data.Acceleration * Time.fixedDeltaTime;
         var newVelocity = Player.CharacterController.velocity + movementDelta;
         Debug.Log(newVelocity);
@@ -40,13 +49,11 @@ public class MovementState : State
         Player.CharacterController.Move(newVelocity * Time.fixedDeltaTime);
     }
 
-    public override void HandleInput()
+    private void Rotate()
     {
-        _moveDir = new Vector3(Player.InputManager.MoveInput.x, Player.InputManager.MoveInput.y);
-    }
+        Quaternion targetRotation = Quaternion.LookRotation(new Vector3(Data.Input.x, 0, Data.Input.y));
 
-    public override void Update()
-    {
-        
+        // Плавный поворот
+        Player.transform.rotation = Quaternion.Slerp(Player.transform.rotation, targetRotation, Data.RotationSpeed * Time.deltaTime);
     }
 }

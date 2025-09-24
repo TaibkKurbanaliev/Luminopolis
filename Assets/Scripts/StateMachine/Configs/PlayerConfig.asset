@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77405289c1d0c854b943d07e7236e456, type: 3}
   m_Name: PlayerConfig
   m_EditorClassIdentifier: 
-  <MovementStateConfig>k__BackingField:
-    <MoveSpeed>k__BackingField: 15
-    <Acceleration>k__BackingField: 25
-    <Drag>k__BackingField: 0.8
+  <WalkStateConfig>k__BackingField:
+    <MoveSpeed>k__BackingField: 2.5
+    <Acceleration>k__BackingField: 50
+    <Drag>k__BackingField: 0.5
+    <RotationSpeed>k__BackingField: 5

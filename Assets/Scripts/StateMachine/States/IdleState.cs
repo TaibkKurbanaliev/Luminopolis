@@ -20,6 +20,7 @@ public class IdleState : MovementState
 
     public override void FixedUpdate()
     {
+        base.FixedUpdate();
     }
 
     public override void HandleInput()
@@ -29,7 +30,8 @@ public class IdleState : MovementState
 
     public override void Update()
     {
+        base.Update();
         if (Data.Input != Vector2.zero)
-            StateSwitcher.SwitchState<MovementState>();
+            StateSwitcher.SwitchState<WalkState>();
     }
 }
