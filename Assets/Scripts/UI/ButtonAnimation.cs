@@ -58,6 +58,12 @@ public class ButtonAnimation : MonoBehaviour
         _text.fontStyle = FontStyles.Bold;
         Clicked?.Invoke();
     }
+    public virtual void Click()
+    {
+        _button.transform.DOScale(_originalScale * _scale, _fadeTime);
+        _audioSource.PlayOneShot(_clickSound);
+        Clicked?.Invoke();
+    }
 
     public virtual void DeSelect()
     {

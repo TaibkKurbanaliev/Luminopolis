@@ -37,6 +37,7 @@ public class SelectorButtonAnim : MonoBehaviour
     public void ClickDown()
     {
         transform.DOScale(_originalScale * _scale, _changeSizeTime);
+        _audioSource.PlayOneShot(_clickSound);
     }
 
     public void ClickUp()

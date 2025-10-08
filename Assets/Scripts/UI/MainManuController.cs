@@ -38,6 +38,7 @@ public class MainManuController : MonoBehaviour
         ClearSettings();
 
         _settingsMenu.SetActive(false);
+        _backButton.SetActive(false);
     }
 
     private void Update()
@@ -55,7 +56,7 @@ public class MainManuController : MonoBehaviour
 
     public void Settings()
     {
-        ClearSettings();
+        Video();
         _backButton.SetActive(true);
         _currentOpened.SetActive(false);
         _settingsMenu.SetActive(true);
@@ -75,13 +76,39 @@ public class MainManuController : MonoBehaviour
         Application.Quit();
     }
 
+    public void Video()
+    {
+        ClearSettings();
+        _videoPanel.SetActive(true);
+    }
+
+    public void Sound()
+    {
+        ClearSettings();
+        _soundPanel.SetActive(true);
+    }
+
+    public void Language()
+    {
+        ClearSettings();
+        _languagePanel.SetActive(true);
+    }
+
+    public void Control()
+    {
+        ClearSettings();
+        _controlPanel.SetActive(true);
+    }
+
     private void ClearSettings()
     {
-        _videoPanel.SetActive(true);
+        _videoPanel.SetActive(false);
         _soundPanel.SetActive(false);
         _languagePanel.SetActive(false);
         _controlPanel.SetActive(false);
     }
+
+
 }
 
 public class TestSaver

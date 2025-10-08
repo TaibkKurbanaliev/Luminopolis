@@ -64,7 +64,7 @@ MonoBehaviour:
   _changeColorTime: 0.2
   _changeSizeTime: 0.2
   _scale: 0.9
-  _clickSound: {fileID: 0}
+  _clickSound: {fileID: 8300000, guid: dde559ace49168e4d8e75f0f395c8900, type: 3}
   _hoverColor: {r: 0.35, g: 0.22749999, b: 0.22749999, a: 1}
 --- !u!114 &3057496158285771875
 MonoBehaviour:
@@ -446,7 +446,7 @@ MonoBehaviour:
   _changeColorTime: 0.2
   _changeSizeTime: 0.2
   _scale: 0.9
-  _clickSound: {fileID: 0}
+  _clickSound: {fileID: 8300000, guid: dde559ace49168e4d8e75f0f395c8900, type: 3}
   _hoverColor: {r: 0.35, g: 0.23770833, b: 0.22749999, a: 1}
 --- !u!114 &4833611218310106897
 MonoBehaviour:

@@ -139,10 +139,9 @@ MonoBehaviour:
   _fadeTime: 0.2
   _scale: 0.9
   _hoverScale: 0.95
-  _clickSound: {fileID: 0}
+  _clickSound: {fileID: 8300000, guid: dde559ace49168e4d8e75f0f395c8900, type: 3}
   _hoverSound: {fileID: 0}
   _hoverColor: {r: 0.41176474, g: 0.19607845, b: 0.1137255, a: 1}
-  _text: {fileID: 8998270475036561377}
 --- !u!114 &1252655956713835570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,6 +178,38 @@ MonoBehaviour:
         - m_Target: {fileID: 207778364153444563}
           m_TargetAssemblyTypeName: ButtonAnimation, Assembly-CSharp
           m_MethodName: UnHighlight
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 207778364153444563}
+          m_TargetAssemblyTypeName: ButtonAnimation, Assembly-CSharp
+          m_MethodName: Select
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 207778364153444563}
+          m_TargetAssemblyTypeName: ButtonAnimation, Assembly-CSharp
+          m_MethodName: DeSelect
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
