@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
 
     [field: SerializeField] public PlayerConfig PlayerConfig { get; private set; }
     [field: SerializeField] public CharacterController CharacterController { get; private set; }
+    [field: SerializeField] public GameObject Target {  get; private set; }
 
     public StateMachine StateMachine => _stateMachine;
     public InputManager InputManager => _inputManager;
@@ -34,6 +35,7 @@ public class Player : MonoBehaviour
 
         _stateMachine.Init(new()
         {
+            new TargetMovementState(_stateMachine, this, _smData),
             new IdleState(_stateMachine, this, _smData),
             new WalkState(_stateMachine, this, _smData),
         });

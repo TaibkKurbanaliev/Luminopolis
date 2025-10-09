@@ -17,3 +17,7 @@ MonoBehaviour:
     <Acceleration>k__BackingField: 50
     <Drag>k__BackingField: 0.5
     <RotationSpeed>k__BackingField: 5
+  <FightStateConfig>k__BackingField:
+    <Speed>k__BackingField: 2.5
+    <Drag>k__BackingField: 0.5
+    <Acceleration>k__BackingField: 50
