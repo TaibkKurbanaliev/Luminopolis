@@ -1,3 +1,4 @@
+using System;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.AI;
@@ -15,6 +16,7 @@ public class MovementState : State
     public override void Enter()
     {
     }
+
 
     public override void Exit()
     {

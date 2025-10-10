@@ -12,7 +12,7 @@ public class WalkState : MovementState
 
     public override void Enter()
     {
-        Debug.Log("Enter the WalkState");
+        base.Enter();
         Data.Speed = _config.MoveSpeed;
         Data.Acceleration = _config.Acceleration;
         Data.Drag = _config.Drag;
@@ -21,6 +21,7 @@ public class WalkState : MovementState
 
     public override void Exit()
     {
+        base.Exit();
     }
 
     public override void FixedUpdate()
@@ -30,6 +31,7 @@ public class WalkState : MovementState
 
     public override void HandleInput()
     {
+        base.HandleInput();
         Data.Input = Player.InputManager.MoveInput;
     }
 

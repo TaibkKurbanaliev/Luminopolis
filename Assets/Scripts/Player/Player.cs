@@ -35,9 +35,9 @@ public class Player : MonoBehaviour
 
         _stateMachine.Init(new()
         {
-            new TargetMovementState(_stateMachine, this, _smData),
             new IdleState(_stateMachine, this, _smData),
             new WalkState(_stateMachine, this, _smData),
+            new TargetMovementState(_stateMachine, this, _smData),
         });
     }
 
@@ -50,5 +50,14 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         _stateMachine.FixedUpdate();
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.TryGetComponent(out Interactable interactable) && InputManager.Interact)
+        {
+            Target = interactable.gameObject;
+            StateMachine.SwitchState<TargetMovementState>();
+        }
     }
 }

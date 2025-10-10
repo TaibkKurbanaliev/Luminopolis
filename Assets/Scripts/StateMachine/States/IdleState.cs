@@ -8,7 +8,7 @@ public class IdleState : MovementState
 
     public override void Enter()
     {
-        Debug.Log("Enter the IdleState");
+        base.Enter();
         Data.Speed = 0;
         Data.Acceleration = 0;
         Data.Drag = 0;
@@ -16,6 +16,7 @@ public class IdleState : MovementState
 
     public override void Exit()
     {
+        base.Exit();
     }
 
     public override void FixedUpdate()
@@ -25,6 +26,7 @@ public class IdleState : MovementState
 
     public override void HandleInput()
     {
+        base.HandleInput();
         Data.Input = Player.InputManager.MoveInput;
     }
 

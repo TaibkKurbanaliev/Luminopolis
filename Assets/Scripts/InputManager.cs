@@ -9,10 +9,13 @@ public class InputManager : MonoBehaviour
 {
     [SerializeField] private Camera _sceneCamera;
     [SerializeField] private LayerMask _placementLayerMask;
+
     [Header("GUI Buttons")]
     [SerializeField] private Button _shopButton;
     [SerializeField] private Button _rotateButton;
     [SerializeField] private Button _placeButton;
+
+    [field: SerializeField] public ControlButtons Buttons;
 
     private InputSystem_Actions _input;
 
@@ -27,6 +30,7 @@ public class InputManager : MonoBehaviour
     public Vector2 LookInput => _input.Player.Look.ReadValue<Vector2>();
     public Vector2 ZoomInput => _input.Player.Zoom.ReadValue<Vector2>();
     public Vector2 PointerPosition => _input.Player.Position.ReadValue<Vector2>();
+    public bool Interact => _input.Player.Interact.IsPressed();
     public bool IsCameraRotating => _input.Player.RotateCamera.IsPressed();
     public bool RightClick => _input.Player.MoveToMousePos.triggered;
 
