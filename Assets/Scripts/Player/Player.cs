@@ -5,7 +5,7 @@ using Zenject;
 
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(PlayerView))]
-public class Player : MonoBehaviour
+public class Player : Entity
 {
     private StateMachine _stateMachine;
     private InputManager _inputManager;

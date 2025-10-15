@@ -12,6 +12,4 @@ public class PlayerStats
     //Base Properties
     public Health Health { get; private set; }
     public Stamina Stamina { get; private set; }
-
-
 }
