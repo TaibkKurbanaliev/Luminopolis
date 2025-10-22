@@ -12,7 +12,7 @@ public abstract class Interactable : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.TryGetComponent<Player>(out Player player))
+        if (other.gameObject.TryGetComponent(out Player player))
         {
             InteractEntered?.Invoke(_actionName);
         }
@@ -20,7 +20,14 @@ public abstract class Interactable : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.TryGetComponent<Player>(out Player _))
+        if (other.gameObject.TryGetComponent(out Player _))
             InteractExited?.Invoke();
     }
+}
+
+[Serializable]
+public class Trainable—haracteristic
+{
+    [field: SerializeField] public StatType StatType;
+    [field: SerializeField] public float Value;
 }

@@ -2,12 +2,23 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using static Modifier;
+
+
+public enum OperationType { Add, Substract, Multiply, Subdivide }
 
 public class Modifier : MonoBehaviour
 {
-    public enum OperationType { Add, Substract, Multiply, Subdivide }
+    [SerializeField] private Sprite icon;
     [SerializeField] private List<StatOperation> _statOperations;
+    [SerializeField] private float _duration = 0f;
+
+    private BasicStatModifier _modifier;
+
+    public void ApplyModifier(Entity entity)
+    {
+        _modifier = new BasicStatModifier(_duration, _statOperations);
+        entity.Stats.Mediator.AddModifier(_modifier);
+    }
 
     private void OnValidate()
     {

@@ -1,9 +1,11 @@
 using UnityEngine;
 
-public class PunchBag : Interactable
+public class PunchBag : TrainingEquipment
 {
     public override void Interact()
     {
-        
+        base.Interact();
     }
+
+
 }

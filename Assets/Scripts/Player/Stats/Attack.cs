@@ -1,63 +1,25 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
 public class Attack
 {
-    public float HookDamage { get; private set; }
-    public float JabDamage { get; private set; }
-    public float UppercutDamage { get; private set; }
-    public float PunchSpeed { get; private set; }
-    public float PunchPrice { get; private set; }
+    [SerializeField] private int _strikingSpeed;
+    [SerializeField] private int _power;
+    [SerializeField] private int _accuracy;
+    [SerializeField] private int _blocking;
+    [SerializeField] private int _headMoving;
+    [SerializeField] private int _footWork;
+    [SerializeField] private int _switchStance;
 
-    private readonly float _maxCharacteristicsValue;
+    public int StrikingSpeed { get => _strikingSpeed; set => _strikingSpeed = value; }
+    public int Power { get => _power; set => _power = value; }
+    public int Accuracy { get => _accuracy; set => _accuracy = value; }
+    public int Blocking { get => _blocking; set => _blocking = value; }
+    public int HeadMoving { get => _headMoving; set => _headMoving = value; }
+    public int FootWork { get => _footWork; set => _footWork = value; }
+    public int SwitchStance { get => _switchStance; set => _switchStance = value; }
 
-    public Attack(float hookDamage, float jabDamage, float uppercutDamage, float punchSpeed, float punchPrice, float maxCharacteristicsValue)
-    {
-        HookDamage = hookDamage;
-        JabDamage = jabDamage;
-        UppercutDamage = uppercutDamage;
-        PunchSpeed = punchSpeed;
-        PunchPrice = punchPrice;
-        _maxCharacteristicsValue = maxCharacteristicsValue;
-    }
 
-    public void UpgradeJabDamage(float addValue)
-    {
-        if (addValue < 0)
-            throw new ArgumentOutOfRangeException(nameof(addValue));
-
-        JabDamage = Mathf.Clamp(JabDamage + addValue, 0, _maxCharacteristicsValue);
-    }
-
-    public void UpgradeHookDamage(float addValue)
-    {
-        if (addValue < 0)
-            throw new ArgumentOutOfRangeException(nameof(addValue));
-
-        HookDamage = Mathf.Clamp(HookDamage + addValue, 0, _maxCharacteristicsValue);
-    }
-
-    public void UpgradeUppercutDamage(float addValue)
-    {
-        if (addValue < 0)
-            throw new ArgumentOutOfRangeException(nameof(addValue));
-
-        UppercutDamage = Mathf.Clamp(UppercutDamage + addValue, 0, _maxCharacteristicsValue);
-    }
-
-    public void UpgradePunchSpeed(float addValue)
-    {
-        if (addValue < 0)
-            throw new ArgumentOutOfRangeException(nameof(addValue));
-
-        PunchSpeed = Mathf.Clamp(PunchSpeed + addValue, 0, _maxCharacteristicsValue);
-    }
-    
-    public void SetPunchPrice(float value)
-    {
-        if (value <= 0)
-            throw new ArgumentOutOfRangeException(nameof(value));
-
-        PunchPrice = value;
-    }
 }
