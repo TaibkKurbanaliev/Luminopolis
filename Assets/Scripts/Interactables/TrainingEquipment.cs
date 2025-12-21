@@ -3,11 +3,9 @@ using UnityEngine;
 
 public abstract class TrainingEquipment : Interactable
 {
-    protected Modifier Modifier;
 
     private void Start()
     {
-        Modifier = GetComponent<Modifier>();
     }
 
     public override void Interact()

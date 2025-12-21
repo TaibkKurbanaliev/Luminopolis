@@ -10,11 +10,15 @@ public class StatMediator
         _modifiers.AddLast(modifier);
     }
 
-    public void PerformModifier(float value, StatType type)
+    public int PerformModifier(int value, StatType type)
     {
+        int result = value;
+
         foreach(StatModifier modifier in _modifiers)
         {
         }
+
+        return result;
     }
 
     public void Update(float deltaTime)

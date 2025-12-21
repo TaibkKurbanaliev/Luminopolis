@@ -14,7 +14,7 @@ public class Selector : MonoBehaviour
     [SerializeField] private OptionsSO _optionsNames;
     [SerializeField] private float _swapTimeBetweenCharacters;
     [SerializeField] private float _swapTimeBetweenOptions;
-    [SerializeField] private float _vertexStepDelay = 0.015f;
+    //[SerializeField] private float _vertexStepDelay = 0.015f;
 
     private string _currentSelect;
     private int _currentIndex = 0;

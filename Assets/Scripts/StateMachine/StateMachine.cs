@@ -1,27 +1,29 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 
 public class StateMachine : IStateSwitcher
 {
-    private List<State> _states;
-    private State _currentState;
+    private List<IState> _states = new();
+    private IState _currentState;
 
-    public void Init(List<State> states)
+    public void AddState<T>(T state) where T : IState
     {
-        _states = states;
-        _currentState = _states[0];
-        _currentState.Enter();
+        if (_states.Any(st => st is T))
+            throw new ArgumentException($"StateMachine is already exist {typeof(T)}");
+
+        _states.Add(state);
     }
 
-    public void SwitchState<T>() where T : State
+    public void SwitchState<T>() where T : IState
     {
-        State state = _states.FirstOrDefault(state => state is T);
+        IState state = _states.FirstOrDefault(state => state is T);
 
         if (state == null)
-            throw new ArgumentException();
+            throw new ArgumentException($"StateMachine doesn't conatins {typeof(T)}");
 
-        _currentState.Exit();
+        _currentState?.Exit();
         _currentState = state;
         _currentState.Enter();
     }

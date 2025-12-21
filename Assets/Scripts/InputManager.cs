@@ -11,9 +11,6 @@ public class InputManager : MonoBehaviour
     [SerializeField] private LayerMask _placementLayerMask;
 
     [Header("GUI Buttons")]
-    [SerializeField] private Button _shopButton;
-    [SerializeField] private Button _rotateButton;
-    [SerializeField] private Button _placeButton;
 
     [field: SerializeField] public ControlButtons Buttons;
 
@@ -43,10 +40,6 @@ public class InputManager : MonoBehaviour
 
         _input.UI.Cancel.started += OnExit;
         _input.UI.OpenShop.started += OnShopOpened;
-
-        _shopButton.onClick.AddListener(OnShopOpened);
-        _rotateButton.onClick.AddListener(OnRotate);
-        _placeButton.onClick.AddListener(OnClick);
     }
 
     private void OnDisable()
@@ -56,10 +49,6 @@ public class InputManager : MonoBehaviour
 
         _input.UI.Cancel.started -= OnExit;
         _input.UI.OpenShop.started -= OnShopOpened;
-
-        _shopButton.onClick.RemoveListener(OnShopOpened);
-        _rotateButton.onClick.RemoveListener(OnRotate);
-        _placeButton.onClick.RemoveListener(OnClick);
     }
 
     public bool IsPointerOverUI() => EventSystem.current.IsPointerOverGameObject();
@@ -91,11 +80,6 @@ public class InputManager : MonoBehaviour
     private void OnClick(InputAction.CallbackContext context)
     {
         Clicked?.Invoke();
-    }
-    private void OnClick()
-    {
-        Clicked?.Invoke();
-        Debug.Log("Kek");
     }
 
     private void OnExit(InputAction.CallbackContext context)

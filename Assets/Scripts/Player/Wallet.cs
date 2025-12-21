@@ -2,7 +2,6 @@ using System;
 
 public class Wallet 
 {
-    public event Action<int> MoneyChanged;
     public int Money { get; private set; }
 
     public Wallet()
@@ -23,7 +22,7 @@ public class Wallet
         }
 
         Money += money;
-        MoneyChanged?.Invoke(Money);
+        EventBus<MoneyChangeEvent>.Raise(new MoneyChangeEvent { Money = money });
     }
 
     public bool TrySpendMoney(int money)
@@ -39,7 +38,7 @@ public class Wallet
         }
 
         Money -= money;
-        MoneyChanged?.Invoke(Money);
+        EventBus<MoneyChangeEvent>.Raise(new MoneyChangeEvent { Money = money });
         return true;
     }
 }

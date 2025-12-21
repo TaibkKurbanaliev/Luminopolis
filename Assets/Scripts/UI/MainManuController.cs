@@ -43,9 +43,6 @@ public class MainManuController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-        }
     }
 
     public void Continue()

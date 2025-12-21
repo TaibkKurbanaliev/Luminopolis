@@ -4,19 +4,17 @@ public enum StatType
     // Attack
     StrikingSpeed,
     Power,
-    Accuaracy,
-    Blocking,
-    HeadMovement,
-    FootWork,
-    SwitchStance,
+    Accuarancy,
+    JabDamage,
+    HookDamage,
+    UppercutDamage,
     // Stamina
     StrikingStamina,
     Endurance,
     EnduranceDelay,
     //Health
-    Health,
-    Heart,
-    HealingDelay,
+    MaxHealth,
+    RegenerationPerSecond,
     //Block
     BlockAmount
 }

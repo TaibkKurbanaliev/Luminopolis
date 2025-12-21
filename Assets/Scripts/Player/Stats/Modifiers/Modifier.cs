@@ -17,7 +17,7 @@ public class Modifier : MonoBehaviour
     public void ApplyModifier(Entity entity)
     {
         _modifier = new BasicStatModifier(_duration, _statOperations);
-        entity.Stats.Mediator.AddModifier(_modifier);
+        //entity.Stats.Mediator.AddModifier(_modifier);
     }
 
     private void OnValidate()
