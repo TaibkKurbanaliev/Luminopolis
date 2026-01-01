@@ -5,8 +5,8 @@ using UnityEngine;
 [Serializable]
 public class LanguageSetting : IDisposable
 {
-    [SerializeField] private Selector _textLanguageSelector;
-    [SerializeField] private Selector _voiceLanguageSelector;
+    [SerializeField] private MainMenuSelector _textLanguageSelector;
+    [SerializeField] private MainMenuSelector _voiceLanguageSelector;
     [SerializeField] private ToggleSwitch _subtitlesToggle;
 
     public Language TextLanguage { get; set; }

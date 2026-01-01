@@ -7,9 +7,9 @@ public class Quality
 {
     public event Action<QualityLevel> OnQualityChanged;
 
-    [SerializeField] private Selector _qualityLevelSelector;
-    [SerializeField] private Selector _msaaLevelSelector;
-    [SerializeField] private Selector _qualitySelector;
+    [SerializeField] private MainMenuSelector _qualityLevelSelector;
+    [SerializeField] private MainMenuSelector _msaaLevelSelector;
+    [SerializeField] private MainMenuSelector _qualitySelector;
 
     private UniversalRenderPipelineAsset _currentURP;
 

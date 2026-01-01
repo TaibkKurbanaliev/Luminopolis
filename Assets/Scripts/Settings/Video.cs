@@ -6,9 +6,9 @@ using UnityEngine.UI;
 [Serializable]
 public class Video : IDisposable
 {
-    [SerializeField] private Selector _screenModeSelector;
-    [SerializeField] private Selector _screenResolutionSelector;
-    [SerializeField] private Selector _qualityLevelSelector;
+    [SerializeField] private MainMenuSelector _screenModeSelector;
+    [SerializeField] private MainMenuSelector _screenResolutionSelector;
+    [SerializeField] private MainMenuSelector _qualityLevelSelector;
     [SerializeField] private Slider _brightness;
     [SerializeField] private ToggleSwitch _vSyncToggle;
     [SerializeField] private ToggleSwitch _hdrToggle;
